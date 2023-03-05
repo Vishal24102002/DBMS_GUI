@@ -27,12 +27,12 @@ def main():
   name_entry=Entry(pradeep,textvariable=user,font=('calibre',10,'normal'))
   id_label=label(pradeep,text="Employee-ID",fg="white",font=('calibre',10,'normal'))
   id_entry=Entry(pradeep,textvariable=ID,font=('calibre',10,'normal'))
-  name_label.grid()
-  name_entry.grid()
-  id_label.grid()
-  id_entry.grid()
-  search_button=Button(pradeep,text="Search",cursor="hand2")
-  search_button.grid()
+  name_label.grid(row=0,column=0)
+  name_entry.grid(row=0,column=1)
+  id_label.grid(row=1,column=0)
+  id_entry.grid(row=1,column=1)
+  search_button=Button(pradeep,text="Search",cursor="hand2",command=detail)
+  search_button.grid(row=2,column=0,columnspan=2)
 
 def alertbox():
   messagebox.askyesno("confirmation","Do you want to save the data")
