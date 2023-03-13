@@ -25,10 +25,10 @@ def speak():
 
    
 
-entry_label(Vikas,text=" ")
+entry_label=Label(Vikas,text=" ")
 entry_label.grid(row=0,column=0)
 
-entry1_label(Vikas,text=" ")
+entry1_label=Label(Vikas,text=" ")
 entry1_label.grid(row=0,column=4)
 
 Entry=StringVar()
