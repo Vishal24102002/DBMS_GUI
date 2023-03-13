@@ -27,10 +27,16 @@ def speak(text):
 def search(mycursor):
     NAME=staff_name.get()
     ID=staff_id.get()
+    staff_name.insert(0," ")
+    staff_id.insert(0," ")
+
     print("name =",NAME)
     print("id =",ID)
     mycursor.execute("show tables")
     n=('aravality',)
+    vishal1.minsize(350,420)
+    detail_frame=Frame(pradeep)
+    detail_frame.place(x=25,y=100,height=300,width=300)
     for tables in mycursor:
         print(tables)
         if tables!=n:
@@ -43,10 +49,9 @@ def search(mycursor):
                 print("total rows in details",mycursor.rowcount)
             except:
                 speak("no such data found")
+                error_label=Label(detail_frame,text=" ",fg="red",font=(12,'calibre','normal'))
+                error_label.grid(row=0,column=0,columnspan=3,rowspan=3)
                 break
-    vishal1.minsize(350,420)
-    detail_frame=Frame(pradeep)
-    detail_frame.place(x=25,y=100,height=300,width=300)
     
 def connect():
     mydb=mysql.connector.connect(user="root",password="vishal",host="localhost")
