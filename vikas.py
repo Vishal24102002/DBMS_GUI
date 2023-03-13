@@ -13,6 +13,7 @@ Vikas.geometry("300x250")
 Vikas.maxsize(300,250)
 Vikas.minsize(300,250)
 Vikas.title("Speach converter")
+Vikas.configure(bg="black")
 
 entry_label(Vikas,text=" ")
 entry_label.grid(row=0,column=0)
@@ -27,5 +28,5 @@ Text.grid(row=4,column=3,columnspan=4)
 Speak=Button(vikas,text="convert",activebackground="blue",command=lambda:speak(Entry.get()))
 Speak.grid(row=5,column=3,columnspan=4)
 
-Vikas.mainloop
+Vikas.mainloop()
   
