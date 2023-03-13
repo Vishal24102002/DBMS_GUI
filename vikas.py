@@ -15,6 +15,10 @@ Vikas.minsize(300,250)
 Vikas.title("Speach converter")
 Vikas.configure(bg="black")
 
+def speak(text):
+   Engine=init.pt()
+   
+
 entry_label(Vikas,text=" ")
 entry_label.grid(row=0,column=0)
 
