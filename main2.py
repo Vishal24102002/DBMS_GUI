@@ -29,7 +29,6 @@ def search(mycursor):
     ID=staff_id.get()
     staff_name.insert(0," ")
     staff_id.insert(0," ")
-
     print("name =",NAME)
     print("id =",ID)
     mycursor.execute("show tables")
@@ -46,11 +45,11 @@ def search(mycursor):
         print(tables)
         if tables!=n:
             speak("not found, creating one ")
-            cmd="create table "+n+"(name varchar(12),salary int(4),date_joining int,date_of_birth int(6))"
-            mycursor.execute(cmd)
+            cmd="create table %s (name varchar(12),salary int(4),date_joining int,date_of_birth int(6))"
+            mycursor.execute(cmd,n)
         elif tables==n:
             try:
-                mycursor.execute("select * from aravality where name="+NAME+"& age="+ID)
+                mycursor.execute("select * from aravality where name= %s & age= %s",NAME,ID)
                 faculities_details=mycursor.fetchall()
                 print("total rows in details",mycursor.rowcount)
             except:
@@ -58,6 +57,8 @@ def search(mycursor):
                 error_label=Label(detail_frame,text=" ",fg="red",font=(12,'calibre','normal'))
                 error_label.grid(row=0,column=0,columnspan=3,rowspan=3)
                 break
+    update_button=Button(pradeep,text="update",activebackground="green",activeforground="blue",font=('calibre',10,'normal'),command=update)  
+    update_button.pack(side=Bottom,padx=120px)
     
 def connect():
     mydb=mysql.connector.connect(user="root",password="vishal",host="localhost")
