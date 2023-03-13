@@ -16,7 +16,13 @@ Vikas.title("Speach converter")
 Vikas.configure(bg="black")
 
 def speak(text):
-   Engine=init.pt()
+   Engine=pt.init()
+   Engine.say(text)
+   Voices=engine.getProperty('voices') 
+   print(Voices) 
+   engine.setProperty('voice',Voices[1].id) 
+   engine.runAndWait()
+
    
 
 entry_label(Vikas,text=" ")
