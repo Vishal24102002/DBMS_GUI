@@ -33,7 +33,12 @@ def search(mycursor):
     print("name =",NAME)
     print("id =",ID)
     mycursor.execute("show tables")
-    n=('aravality',)
+    if (clicked.get()=="facility"):
+      n=('aravality',)
+    elif(clicked.get()=="student"):
+      n=('student',)
+    else():
+      speak("select the required column")
     vishal1.minsize(350,420)
     detail_frame=Frame(pradeep)
     detail_frame.place(x=25,y=100,height=300,width=300)
@@ -41,8 +46,9 @@ def search(mycursor):
         print(tables)
         if tables!=n:
             speak("not found, creating one ")
-            mycursor.execute("create table aravality(name varchar(12),salary int(4),date_joining int,date_of_birth int(6))")
-        if tables==n:
+            cmd="create table "+n+"(name varchar(12),salary int(4),date_joining int,date_of_birth int(6))"
+            mycursor.execute(cmd)
+        elif tables==n:
             try:
                 mycursor.execute("select * from aravality where name="+NAME+"& age="+ID)
                 faculities_details=mycursor.fetchall()
