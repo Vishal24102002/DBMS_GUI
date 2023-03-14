@@ -60,17 +60,17 @@ def search(mycursor):
     update_button=Button(pradeep,text="update",activebackground="green",activeforground="blue",font=('calibre',10,'normal'),command=update)  
     update_button.pack(side=Bottom,padx=120px)
     
-    detail1=Label(detail_frame,text="STAFF-ID",font=('calibre',10,'normal'))
-    detail2=Label(detail_frame,text="NAME",font=('calibre',10,'normal'))
-    detail3=Label(detail_frame,text="SALARY",font=('calibre',10,'normal'))
-    detail4=Label(detail_frame,text="DATE OF JOINING",font=('calibre',10,'normal'))
-    detail5=Label(detail_frame,text="DATE OF BIRTH",font=('calibre',10,'normal'))
+    detail1=Label(detail_frame,text="STAFF-ID",font=('calibre',10,'normal'),borderwidth=4px,relief="solid")
+    detail2=Label(detail_frame,text="NAME",font=('calibre',10,'normal'),borderwidth=4px,relief="solid")
+    detail3=Label(detail_frame,text="SALARY",font=('calibre',10,'normal'),borderwidth=4px,relief="solid")
+    detail4=Label(detail_frame,text="DATE OF JOINING",font=('calibre',10,'normal'),borderwidth=4px,relief="solid")
+    detail5=Label(detail_frame,text="DATE OF BIRTH",font=('calibre',10,'normal'),borderwidth=4px,relief="solid")
     
-    detail1.grid(row=,column=)
-    detail2.grid(row=,column=)
-    detail3.grid(row=,column=)
-    detail4.grid(row=,column=)
-    detail5.grid(row=,column=) 
+    detail1.grid(row=0,column=0)
+    detail2.grid(row=0,column=1,colspan=2)
+    detail3.grid(row=0,column=3)
+    detail4.grid(row=0,column=4)
+    detail5.grid(row=0,column=5) 
 
 def update():
     warning(mydb)
