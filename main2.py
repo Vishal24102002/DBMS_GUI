@@ -60,6 +60,21 @@ def search(mycursor):
     update_button=Button(pradeep,text="update",activebackground="green",activeforground="blue",font=('calibre',10,'normal'),command=update)  
     update_button.pack(side=Bottom,padx=120px)
     
+    detail1=Label(detail_frame,text="STAFF-ID",font=('calibre',10,'normal'))
+    detail2=Label(detail_frame,text="NAME",font=('calibre',10,'normal'))
+    detail3=Label(detail_frame,text="SALARY",font=('calibre',10,'normal'))
+    detail4=Label(detail_frame,text="DATE OF JOINING",font=('calibre',10,'normal'))
+    detail5=Label(detail_frame,text="DATE OF BIRTH",font=('calibre',10,'normal'))
+    
+    detail1.grid(row=,column=)
+    detail2.grid(row=,column=)
+    detail3.grid(row=,column=)
+    detail4.grid(row=,column=)
+    detail5.grid(row=,column=) 
+
+def update():
+    warning(mydb)
+    
 def connect():
     mydb=mysql.connector.connect(user="root",password="vishal",host="localhost")
     mycursor=mydb.cursor()
