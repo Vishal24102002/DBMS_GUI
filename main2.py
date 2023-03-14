@@ -39,7 +39,7 @@ def search(mycursor):
     else():
       speak("select the required column")
     vishal1.minsize(350,420)
-    detail_frame=Frame(pradeep)
+    detail_frame=Frame(pradeep,hidhlightbackground=""red",highlightthickness=3)
     detail_frame.place(x=25,y=100,height=300,width=300)
     for tables in mycursor:
         print(tables)
