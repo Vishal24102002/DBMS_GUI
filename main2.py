@@ -73,8 +73,11 @@ def search(mycursor):
     detail5.grid(row=0,column=5) 
 
 def update():
-    warning(mydb)
     
+    mysql=" "
+    mycusor.execute(mysql,)
+    warning()
+
 def connect():
     mydb=mysql.connector.connect(user="root",password="vishal",host="localhost")
     mycursor=mydb.cursor()
