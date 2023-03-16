@@ -67,11 +67,11 @@ def connect(GET):
     detail3=Label(detail_frame,text="SALARY",font=('calibre',10,'normal'),fg="black",borderwidth=2,relief="solid")
     detail4=Label(detail_frame,text="DATE OF JOINING",font=('calibre',10,'normal'),fg="black",borderwidth=2,relief="solid")
     detail5=Label(detail_frame,text="DATE OF BIRTH",font=('calibre',10,'normal'),fg="black",borderwidth=2,relief="solid")
-    result1=Label(detail_frame,text="",font=('calibre',10,'normal'),fg="black",relief="solid")
-    result2=Label(detail_frame,text="",font=('calibre',10,'normal'),fg="black",relief="solid")
-    result3=Label(detail_frame,text="",font=('calibre',10,'normal'),fg="black",relief="solid")
-    result4=Label(detail_frame,text="",font=('calibre',10,'normal'),fg="black",relief="solid")
-    result5=Label(detail_frame,text="",font=('calibre',10,'normal'),fg="black",relief="solid")
+    result1=Label(detail_frame,text="",font=('calibre',10,'normal'),fg="black")
+    result2=Label(detail_frame,text="",font=('calibre',10,'normal'),fg="black")
+    result3=Label(detail_frame,text="",font=('calibre',10,'normal'),fg="black")
+    result4=Label(detail_frame,text="",font=('calibre',10,'normal'),fg="black")
+    result5=Label(detail_frame,text="",font=('calibre',10,'normal'),fg="black")
     
     detail1.place(x=0,y=0)
     detail2.place(x=0,y=30)
@@ -83,13 +83,11 @@ def connect(GET):
     result3.place(x=200,y=60)
     result4.place(x=200,y=90)
     result5.place(x=200,y=120)
-    
-    mycursor.reset()
-    
     for tables in mycursor:
         print(tables)
         if tables!=n:
             speak("not found, creating one ")
+            mycursor.reset()
             mycursor.execute(cmd="create table %s (name varchar(12),salary int(4),date_joining int,date_of_birth int(6))",n)
         elif tables==n:
             try:
@@ -106,7 +104,7 @@ def connect(GET):
                     
             except:
                 speak("no such data found")
-                for widgets in Frame.winfo_children(detail_frame):
+                for widgets in frame.winfo_children():
                     widgets.destroy()
                     error_label=Label(detail_frame,text=" ",fg="red",font=('calibre',12,'normal'))
                     error_label.grid(row=0,column=0,columnspan=3,rowspan=3)
