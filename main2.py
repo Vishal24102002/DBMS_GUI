@@ -95,7 +95,11 @@ def connect(GET):
                 faculities_details=mycursor.fetchall()
                 print("total rows in details",mycursor.rowcount)
                 for row in faculities_details:
-                    print("row1",row[0])
+                    print("row0",row[0])
+                    print("row1",row[1])
+                    print("row2",row[2])
+                    print("row3",row[3])
+                    print("row4",row[4])
                   #  result1.set(text=row[0])
                    # result2.set(text=row[1])
                    # result3.set(text=row[2])
