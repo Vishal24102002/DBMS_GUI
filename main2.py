@@ -4,7 +4,6 @@ try:
     import pyttsx3 as pt
     from tkinter import messagebox
     import mysql.connector
-    print("true")
     
 except:
     pip.main(["install"],["tk"])
@@ -91,15 +90,17 @@ def connect(GET):
             mycursor.execute(cmd="create table %s (name varchar(12),salary int(4),date_joining int,date_of_birth int(6))",n)
         elif tables==n:
             try:
+                mycursor.reset()
                 mycursor.execute("select * from aravality where name= %s",NAME)
                 faculities_details=mycursor.fetchall()
                 print("total rows in details",mycursor.rowcount)
                 for row in faculities_details:
-                    result1.set(text=row[0])
-                    result2.set(text=row[1])
-                    result3.set(text=row[2])
-                    result4.set(text=row[3])
-                    result5.set(text=row[4])
+                    print("row1",row[0])
+                  #  result1.set(text=row[0])
+                   # result2.set(text=row[1])
+                   # result3.set(text=row[2])
+                   # result4.set(text=row[3])
+                   # result5.set(text=row[4])
                 cursor.reset()
                     
             except:
