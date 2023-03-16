@@ -12,8 +12,8 @@ Vikas=tk()
 Vikas.geometry("300x250")
 Vikas.maxsize(300,250)
 Vikas.minsize(300,250)
-Vikas.title("Speach converter")
-Vikas.configure(bg="black")
+Vikas.title("Speech converter")
+Vikas.configure(bg="green")
 
 def speak():
    Engine=pt.init()
@@ -23,21 +23,27 @@ def speak():
    engine.setProperty('voice',Voices[1].id) 
    engine.runAndWait()
 
-   
-
-entry_label=Label(Vikas,text=" ")
-entry_label.grid(row=0,column=0)
-
-entry1_label=Label(Vikas,text=" ")
-entry1_label.grid(row=0,column=4)
+Vikas1=frame(Vikas,bg="black",highlightbackground="yellow",heightlightthickness=2)
+Vikas1.pack()
 
 Entry=StringVar()
 
-Text=Entry(Vikas,textvariable=Entry,font=('calibre',12,'normal'))
-Text.grid(row=4,column=3,columnspan=4)
+Text=Entry(Vikas1,textvariable=Entry,font=('calibre',12,'normal'))
+Text.place(x=,y=)
 
-Speak=Button(vikas,text="convert",activebackground="blue",command=speak)
-Speak.grid(row=5,column=3,columnspan=4)
+options=[
+"Voice 1",
+"Voice 2",
+"Voice 3",
+"Voice 4",
+"Voice 5"
+]
+voice_type=StringVar()
+voice_type.set("Voice 1")
+voice_choice=OptionMenu(Vikas1, voice_type, *options)
+voice_choice.pack()
 
+Speak=Button(Vikas1,text="convert",activebackground="blue",command=speak)
+Speak.place(x=,y=)
 Vikas.mainloop()
   
