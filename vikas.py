@@ -2,10 +2,13 @@ import pip
 try:
   pip.main(["install"],["tk"])
   pip.main(["install"],["pyttsx3"])
-  import pyttsx3
+  pip.main(["install"],["time"])
+  import pyttsx3 as pt
+  import time
   from tkinter import *
 except:
-  import pyttsx3
+  import time
+  import pyttsx3 as pt
   from tkinter import *
 
 Vikas=tk()
@@ -16,11 +19,24 @@ Vikas.title("Speech converter")
 Vikas.configure(bg="green")
 
 def speak():
-   Engine=pt.init()
-   Engine.say(Entry.get())
+   time.sleep(1000)
+   if (voice_type="Voice 1"):
+     n=0
+   elif (voice_type="Voice 2"):
+     n=1
+   elif (voice_type="Voice 3"):
+     n=2
+   elif (voice_type="Voice 4"):
+     n=3
+   if (voice_type="Voice 5"):
+     n=4
+   else:
+     n=0
+   engine=pt.init()
+   engine.say(Entry.get())
    Voices=engine.getProperty('voices') 
    print(Voices) 
-   engine.setProperty('voice',Voices[1].id) 
+   engine.setProperty('voice',Voices[n].id) 
    engine.runAndWait()
 
 Vikas1=Frame(Vikas,bg="black",highlightbackground="yellow",heightlightthickness=2)
