@@ -24,15 +24,53 @@ def speak(text):
     engine.setProperty('voice',Voices[1].id) 
     engine.runAndWait()
     
+def insert():
+    insert_tk=Toplevel()
+    insert_tk.configure(bg="blue")
+    insert_tk.minsize(400,315)
+    insert_tk.maxsize(400,315)
+    
+    
+    insert=Frame(insert_tk,bg="black")
+    insert.pack(padx=10,pady=10,expand=True,fill="both")
+    
+    head_label=Label(insert,text="details",bg="green",fg="red",font=('calibre',18,'normal'))
+    head_label.place(x=0,y=0,width=380)
+    
+    inserted_name=StringVar()
+    insert_name=Entry(insert,textvariable=inserted_name)
+    #insert_name.place()
+    
+    
+    
+    save_button=Button(insert,text="save",activebackground="red",bg="white",cursor="hand2",command=save)
+    save_button.place(x=0,y=270,width=190,height=25)
+    cancel_button=Button(insert,text="cancel",activebackground="red",bg="white",cursor="hand2",command=lambda:cancel(insert_tk))
+    cancel_button.place(x=190,y=270,width=190,height=25)
     
 def update():
     update_tk=Toplevel()
     update_tk.configure(bg="blue")
+    update_tk.minsize(400,315)
+    update_tk.maxsize(400,315)
+    
     
     update=Frame(update_tk,bg="black")
-    update.pack(padx=20,pady=20,expand=True,fill="both")
+    update.pack(padx=10,pady=10,expand=True,fill="both")
+    
+    heading_label=Label(update,text="details",bg="green",fg="red",font=('calibre',18,'normal'))
+    heading_label.place(x=0,y=0,width=380)
+    
+    update_name=Entry
     
     
+    
+    save_button=Button(update,text="save",activebackground="red",bg="white",cursor="hand2",command=save)
+    save_button.place(x=0,y=270,width=190,height=25)
+    cancel_button=Button(update,text="cancel",activebackground="red",bg="white",cursor="hand2",command=lambda:cancel(update_tk))
+    cancel_button.place(x=190,y=270,width=190,height=25)
+    
+def save():    
     mycusor.execute("update "+m+" set "+column+"="+value+"where name="'''"'''+updated_name+'''"''')
     warning()
 
@@ -88,7 +126,7 @@ def connect(GET):
     
     update_button=Button( start_frame,text="update",activebackground="red",font=('calibre',10,'normal'),command=update,relief="solid")  
     update_button.place(x=0,y=400,width=175,height=35)
-    insert_button=Button( start_frame,text="insert",activebackground="red",font=('calibre',10,'normal'),command=update,relief="solid")  
+    insert_button=Button( start_frame,text="insert",activebackground="red",font=('calibre',10,'normal'),command=insert,relief="solid")  
     insert_button.place(x=175,y=400,width=175,height=35)
     close_button=Button( start_frame,text="close",activebackground="red",font=('calibre',10,'normal'),command=Close,relief="solid")  
     close_button.place(x=0,y=435,width=350,height=40)
@@ -120,6 +158,7 @@ def connect(GET):
                     error_label1=Label(detail_frame,text=" ",fg="purple",font=('calibre',18,'normal'))
                     error_label1.place(x=90,y=90)
                     error_label1.config(text="record not found")
+                    speak("record not found")
                     
                 else:
                     mycursor.execute("select * from "+m+" where name="+'''"'''+NAME+'''"''')
@@ -127,10 +166,15 @@ def connect(GET):
                     speak("data found")
                     print("total rows in details",mycursor.rowcount)
                     for row in faculities_details:
-                        data1.set(row[0])
-                        data2.set(row[1])
-                        data3.set(row[2])
-                        data4.set(row[3])
+                        data1.set(row[4])
+                        data2.set(row[0])
+                        data3.set(row[1])
+                        data4.set(row[2])
+                        data5.set(row[3])
+                        speak("id=")
+                        speak(row[0])
+                        speak("name=")
+                        speak(row[1])
             except:
                 speak("no such data found")
                 for widgets in Frame.winfo_children(detail_frame):
@@ -146,9 +190,27 @@ def connect(GET):
 def Close():
     vishal1.destroy()
 
-def warning(mydb):
-    messagebox.askyesno("show warning","do you want to continue?")
-    mydb.commit()
+def cancel(db):
+    toplevel = Toplevel()
+ 
+    toplevel.title("warning")
+    x_position = 300
+    y_position = 200
+    toplevel.geometry(f"300x100+{x_position}+{y_position}")
+ 
+    l1=Label(toplevel, image="::tk::icons::question")
+    l1.grid(row=0, column=0, pady=(7, 0), padx=(10, 30), sticky="e")
+    l2=Label(toplevel, text="Are you sure you want to Quit")
+    l2.grid(row=0, column=1, columnspan=3, pady=(7, 10), sticky="w")
+ 
+    b1=Button(toplevel, text="Yes", command=lambda:destroy(db,toplevel), width=10)
+    b1.grid(row=1, column=1, padx=(2, 35), sticky="e")
+    b2=Button(toplevel, text="No", command=toplevel.destroy, width=10)
+    b2.grid(row=1, column=2, padx=(2, 35), sticky="e")
+
+def destroy(dt,mt):
+    dt.destroy()
+    mt.destroy()
 
 vishal1=Tk()
 vishal1.title("Aravality")
