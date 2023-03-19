@@ -1,0 +1,49 @@
+vishal1=ctk.CTk()
+vishal1.title("Aravality")
+vishal1.geometry("330x250")
+vishal1.minsize(330,250)
+vishal1.maxsize(330,200)
+ctk.set_appearance_mode("light")
+vishal1.iconbitmap(r'C:\Users\Admin\Documents\vishalproject\logo.ico')
+vishal1.configure(bg_color=("black","blue"))
+
+staff_id=ctk.StringVar()
+staff_name= ctk.StringVar()
+staff_jyear= ctk.StringVar()
+
+pradeep=ctk.CTkFrame(vishal1,fg_color=("yellow","blue"))
+pradeep.pack(fill="both",expand=True)
+
+start_frame=ctk.CTkFrame(pradeep,fg_color=("black","red"))
+start_frame.pack(pady=5,padx=10,expand=True,fill='both')
+
+# label creation 
+empty_label=ctk.CTkLabel(start_frame,text="",fg_color=("black","red"))
+# datatype of menu text
+clicked = ctk.StringVar() 
+clicked.set("select any one")
+drop =ctk.CTkOptionMenu( start_frame, values=["faculities","students"] ,variable=clicked,dropdown_hover_color=("orange","yellow"),button_color="spring green")
+name_label=ctk.CTkLabel(start_frame,text=" *Staff-Name",fg_color=("black","red"),text_color=("white","black"),font=('calibre',12,'normal'))
+name_entry=ctk.CTkEntry(start_frame,placeholder_text=staff_name,font=('calibre',13,'normal'))
+id_label=ctk.CTkLabel(start_frame,text=" *Staff-ID",text_color=("white","black"),fg_color=("black","red"),font=('calibre',12,'normal'))
+id_entry=ctk.CTkEntry(start_frame,placeholder_text=staff_id,font=('calibre',13,'normal'))
+jyear_label=ctk.CTkLabel(start_frame,text=" year of joining",fg_color=("black","red"),text_color=("white","black"),font=('calibre',12,'normal'))
+jyear_entry=ctk.CTkEntry(start_frame,placeholder_text=staff_jyear,font=('calibre',13,'normal'))
+jyear_entry.grid(padx=5,pady=5,row=5,column=1)
+jyear_label.grid(padx=5,row=5,column=0)
+
+#widgets packing
+empty_label.grid(row=0,column=1)
+drop.grid(row=2,columnspan=3,sticky="n")
+id_entry.grid(padx=5,pady=5,row=4,column=1)
+id_label.grid(padx=5,pady=5,row=4,column=0)
+name_entry.grid(padx=5,pady=5,row=3,column=1)
+name_label.grid(padx=5,pady=5,row=3,column=0)
+
+theme_button=ctk.CTkButton(start_frame,text="theme",hover_color=("salmon","navy"),cursor="hand2",command=th,width=20)
+theme_button.grid(row=0,column=3)
+
+search_button=ctk.CTkButton(start_frame,text="search",cursor="hand2",hover_color=("seagreen","emerald"),command=lambda:connect(clicked.get()),height=20,width=100)
+search_button.grid(row=6,columnspan=3)
+
+vishal1.mainloop()  
