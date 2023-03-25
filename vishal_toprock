@@ -83,7 +83,7 @@ def update():
     save_button=ctk.CTkButton(update,text="save",text_color="yellow",hover_color="lime",cursor="hand2",width=230,height=30)
     save_button.place(x=0,y=370)
     cancel_button=ctk.CTkButton(update,text="cancel",text_color="yellow",cursor="hand2",hover_color="lime",command=lambda:cancel(start_frame2),width=230,height=30)
-    cancel_button.place(x=250,y=370)ccccccccccccccccc
+    cancel_button.place(x=250,y=370)
     
 def insert():
     start_frame.forget()
@@ -298,7 +298,20 @@ def connect(GET):
                     speak("record not found")
                     
                 else:
-                    mycursor.execute("select * from "+m+" where name="+'''"'''+NAME+'''"''')
+                    if(m=="students"):
+                        if((len(NAME) != 0) and (len(ID)==0)):
+                            mycursor.execute("select * from " + m + " where FirstName=" + '''"''' + NAME + '''"''')
+                        elif((len(ID)!=0) and (len(NAME)==0)):
+                            mycursor.execute("select * from " + m + " where StudentID=" + '''"''' + ID + '''"''')
+                        elif((len(ID)!=0) and (len(NAME)!=0)):
+                            mycursor.execute("select * from " + m + " where StudentID=" + '''"''' + ID + '''"'''+"&& firstname="+'''"''' + NAME + '''"''')
+                    else:
+                        if((len(NAME) != 0) and (len(ID)==0)):
+                            mycursor.execute("select * from " + m + " where Name=" + '''"''' + NAME + '''"''')
+                        elif((len(ID)!=0) and (len(NAME)==0)):
+                            mycursor.execute("select * from " + m + " where ID=" + '''"''' + ID + '''"''')
+                        elif((len(ID)!=0) and (len(NAME)!=0)):
+                            mycursor.execute("select * from " + m + " where ID=" + '''"''' + ID + '''"'''+"&& name="+'''"''' + NAME + '''"''')
                     faculities_details=mycursor.fetchall()
                     speak("data found")
                     print("total rows in details",mycursor.rowcount)
@@ -316,17 +329,12 @@ def connect(GET):
                 speak("no such data found")
                 for widgets in Frame.winfo_children(detail_frame):
                     widgets.destroy()
-                
-                
                 error_label=ctk.CTkLabel(detail_frame,text="ERROR",fg_color=("black","black"),text_color=("red","white"),font=('calibre',18,'normal'))
                 error_label.place(x=130,y=90)
-                
-        break
-  
+                 
 def Close():
     vishal1.destroy()
                 
-
 vishal1=ctk.CTk()
 vishal1.title("Aravality")
 vishal1.geometry("330x250")
