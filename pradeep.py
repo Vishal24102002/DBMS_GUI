@@ -1,5 +1,4 @@
 import time
-
 import pip
 
 try:
@@ -89,14 +88,14 @@ def update():
     choice = ctk.CTkOptionMenu(update, values=["name", "Id", "experience"], variable=chose,
                                dropdown_hover_color=("orange", "yellow"), button_color="spring green")
     choice.place(x=0, y=70)
-
+    Speak("select any one column")
+    time.sleep(1500)
     save_button = ctk.CTkButton(update, text="save", text_color="yellow", hover_color="lime", cursor="hand2", width=230,
                                 height=30)
     save_button.place(x=0, y=370)
     cancel_button = ctk.CTkButton(update, text="cancel", text_color="yellow", cursor="hand2", hover_color="lime",
                                   command=lambda: cancel(start_frame2), width=230, height=30)
     cancel_button.place(x=250, y=370)
-    ccccccccccccccccc
 
 
 def insert():
@@ -305,6 +304,7 @@ def connect(GET):
         #     try:
         #         speak("not found, creating one ")
         #         mycursor.reset()
+                  
         #         mycursor.execute("create table " + m + "(name varchar(12),salary int(4),joining int(9),birthday int(6))")
         #         mycursor.reset()
         #     except:
@@ -312,7 +312,7 @@ def connect(GET):
         kyuki=0
         if tables == n:
             try:
-                if (len(NAME) == 0 and kyuki!=0 ):
+                if (len(NAME) == 0 and len(ID)==0 ):
                     speak("enter the columns")
                     for widgets in Frame.winfo_children(detail_frame):
                         widgets.destroy()
@@ -330,8 +330,6 @@ def connect(GET):
                             mycursor.execute("select * from " + m + " where StudentID=" + '''"''' + ID + '''"''')
                         elif((len(ID)!=0) and (len(NAME)!=0)):
                             mycursor.execute("select * from " + m + " where StudentID=" + '''"''' + ID + '''"'''+"&& firstname="+'''"''' + NAME + '''"''')
-                        else:
-                            prin("name")
                     except:
                         mycursor.execute("select * from " + m + " where Name=" + '''"''' + NAME + '''"''')
                 faculities_details = mycursor.fetchall()
