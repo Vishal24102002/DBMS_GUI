@@ -1,4 +1,4 @@
-
+import time
 import pip
 try:
     from tkinter import *
@@ -206,6 +206,10 @@ def connect(GET):
     data6=StringVar()
     data7=StringVar()
     data8=StringVar()
+    data9=StringVar()
+    data10=StringVar() 
+    data11=StringVar()
+    data12=StringVar()
     
     detail1=ctk.CTkLabel(detail_frame,text="ID",font=('calibre',12,'normal'),text_color=("red","yellow"),width=200)
     detail2=ctk.CTkLabel(detail_frame,text="NAME",font=('calibre',12,'normal'),text_color=("red","yellow"),width=200)
@@ -215,10 +219,10 @@ def connect(GET):
     detail6=ctk.CTkLabel(detail_frame,text="DATE OF BIRTH",font=('calibre',12,'normal'),text_color=("red","yellow"),width=200)
     detail7=ctk.CTkLabel(detail_frame,text="MOBILE NUMBER",font=('calibre',12,'normal'),text_color=("red","yellow"),width=200)
     detail8=ctk.CTkLabel(detail_frame,text="YEARS OF EXPERIENCE",font=('calibre',12,'normal'),text_color=("red","yellow"),width=200)
-    #detail5=ctk.CTkLabel(detail_frame,text="DATE OF BIRTH",font=('calibre',10,'normal'),text_color=("red","yellow"),width=200)
-    #detail5=ctk.CTkLabel(detail_frame,text="DATE OF BIRTH",font=('calibre',10,'normal'),text_color=("red","yellow"),width=200)
-    #detail5=ctk.CTkLabel(detail_frame,text="DATE OF BIRTH",font=('calibre',10,'normal'),text_color=("red","yellow"),width=200)
-    #detail5=ctk.CTkLabel(detail_frame,text="DATE OF BIRTH",font=('calibre',10,'normal'),text_color=("red","yellow"),width=200)
+    #detail9=ctk.CTkLabel(detail_frame,text="DATE OF BIRTH",font=('calibre',10,'normal'),text_color=("red","yellow"),width=200)
+    #detail10=ctk.CTkLabel(detail_frame,text="DATE OF BIRTH",font=('calibre',10,'normal'),text_color=("red","yellow"),width=200)
+    #detail11=ctk.CTkLabel(detail_frame,text="DATE OF BIRTH",font=('calibre',10,'normal'),text_color=("red","yellow"),width=200)
+    #detail12=ctk.CTkLabel(detail_frame,text="DATE OF BIRTH",font=('calibre',10,'normal'),text_color=("red","yellow"),width=200)
     
     result1=ctk.CTkLabel(detail_frame,text="",textvariable=data1,font=('calibre',10,'normal'),text_color=("white","white"),width=170)
     result2=ctk.CTkLabel(detail_frame,text="",textvariable=data2,font=('calibre',10,'normal'),text_color=("white","white"),width=170)
@@ -228,7 +232,11 @@ def connect(GET):
     result6=ctk.CTkLabel(detail_frame,text="",textvariable=data6,font=('calibre',10,'normal'),text_color=("white","white"),width=170)
     result7=ctk.CTkLabel(detail_frame,text="",textvariable=data7,font=('calibre',10,'normal'),text_color=("white","white"),width=170)
     result8=ctk.CTkLabel(detail_frame,text="",textvariable=data8,font=('calibre',10,'normal'),text_color=("white","white"),width=170)
-    
+    result9=ctk.CTkLabel(detail_frame,text="",textvariable=data9,font=('calibre',10,'normal'),text_color=("white","white"),width=170)
+    result10=ctk.CTkLabel(detail_frame,text="",textvariable=data10,font=('calibre',10,'normal'),text_color=("white","white"),width=170)
+    result11=ctk.CTkLabel(detail_frame,text="",textvariable=data11,font=('calibre',10,'normal'),text_color=("white","white"),width=170)
+    result12=ctk.CTkLabel(detail_frame,text="",textvariable=data12,font=('calibre',10,'normal'),text_color=("white","white"),width=170)
+
     update_button=ctk.CTkButton( start_frame,text="update",font=('calibre',10,'normal'),hover_color=("lime","aqua"),width=175,height=35,command=update)  
     update_button.place(x=0,y=400)
     insert_button=ctk.CTkButton( start_frame,text="insert",hover_color=("lime","aqua"),font=('calibre',10,'normal'),width=175,height=35,command=insert)  
@@ -244,6 +252,11 @@ def connect(GET):
     detail6.place(x=0,y=100)
     detail7.place(x=0,y=120)
     detail8.place(x=0,y=140)
+    detail9.place(x=0,y=160)
+    detail10.place(x=0,y=180)
+    detail11.place(x=0,y=200)
+    detail12.place(x=0,y=220)
+    #detail13.place(x=0,y=240)
     
     result1.place(x=175,y=0)
     result2.place(x=175,y=20)
@@ -253,6 +266,11 @@ def connect(GET):
     result6.place(x=175,y=100)
     result7.place(x=175,y=120)
     result8.place(x=175,y=140)
+    result9.place(x=175,y=160)
+    result10.place(x=175,y=180)
+    result11.place(x=175,y=200)
+    result12.place(x=175,y=220)
+   # result13.place(x=175,y=140)
     
     jyear_label.destroy()
     jyear_entry.destroy()
@@ -262,11 +280,16 @@ def connect(GET):
         if tables!=n:
             speak("not found, creating one ")
             mycursor.reset()
-            mycursor.execute("create table "+m+"(name varchar(12),salary int(4),joining int(9),birthday int(6))")
-            mycursor.reset()
+            if GET==facility:
+                mycursor.execute("create table "+m+"(name varchar(12),salary int(4),joining int(9),birthday int(6))")
+                mycursor.reset()
+            elif GET==students:
+                mycursor.execute("create table "+m+"(first-name varchar(20),lastname varchar(20))")
+                mycursor.execute()
+
         elif tables==n:
             try:
-                if (len(NAME)==0):
+                if (len(NAME)==0 and len(ID)==0):
                     speak("enter the columns")
                     for widgets in Frame.winfo_children(detail_frame):
                         widgets.destroy()
