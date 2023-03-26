@@ -10,6 +10,7 @@ except:
   import time
   import pyttsx3 as pt
   import customtkinter as ctk
+  from PyPDF2 import PdfReader
 
 
 Vikas=ctk.CTk()
@@ -18,6 +19,23 @@ Vikas.maxsize(500,250)
 Vikas.minsize(500,250)
 Vikas.title("Speech converter")
 Vikas.configure(bg="green")
+
+def document(values):
+    global text1
+    print(values)
+    print(pdf_name.get())
+    if values=="PDF":
+        reader = PdfReader(pdf_name.get())
+        print(len(reader.pages))
+        page = reader.pages[0]
+        text1 = page.extract_text()
+        print(text1)
+    elif values=="TEXT":
+        File_object = open(pdf_name.get(),"r")
+        text1=File_object.readlines()
+        print(text1)
+    else:
+        pass
 
 def speak(text,m,sp,v):
     try:
@@ -67,11 +85,17 @@ def voice(event):
     elif (voice_type.get()=="Voice 5"):
         n=4
 def prin():
-    global n,s,v
+    global n,s,v,text1
     print("n=",n)
     txt=text_area.get("1.0",'end-1c')
-    print(txt)
-    speak(txt,n,s,v)
+    if(len(txt)!=0):
+        print(txt)
+        speak(txt,n,s,v)
+    elif(len(txt)==0 and len(text1)!=0):
+        speak(text1,n,s,v)
+    else:
+        pass
+        
 
 Vikas1=ctk.CTkFrame(Vikas,fg_color="black",height=250,width=200)
 Vikas1.pack(fill="both",expand=True)
@@ -80,34 +104,29 @@ Vikas2=ctk.CTkFrame(Vikas1,height=55,width=75)
 n=ctk.IntVar()
 s=ctk.IntVar()
 v=ctk.IntVar()
+text1=ctk.StringVar()
 
 empty_label=ctk.CTkLabel(Vikas1,text="",fg_color="black")
 empty_label.grid(row=0,column=0)
 
 voice_type=ctk.StringVar()
 voice_type.set("choose voice")
-voice_choice=ctk.CTkOptionMenu( Vikas1,values=[
-"Voice 1",
-"Voice 2",
-"Voice 3",
-"Voice 4",
-"Voice 5"
-],variable=voice_type,width=50,command=voice,dropdown_hover_color=("orange","yellow"))
-
+voice_choice=ctk.CTkOptionMenu( Vikas1,values=["Voice 1","Voice 2","Voice 3","Voice 4","Voice 5"],variable=voice_type,width=50,command=voice,dropdown_hover_color=("orange","yellow"))
 voice_choice.grid(row=1,column=2)
 
 
 voice_speed=ctk.StringVar()
 voice_speed.set("Choose speed")
-voice_cho=ctk.CTkOptionMenu( Vikas1,values=[
-"VERY-FAST",
-"FAST",
-"NORMAL",
-"SLOW",
-"VERY-SLOW"
-],variable=voice_speed,width=50,dropdown_hover_color=("orange","yellow"),command=speed)
-
+voice_cho=ctk.CTkOptionMenu( Vikas1,values=["VERY-FAST","FAST","NORMAL","SLOW","VERY-SLOW"],variable=voice_speed,width=50,dropdown_hover_color=("orange","yellow"),command=speed)
 voice_cho.grid(row=2,column=2)
+
+doc=ctk.CTkOptionMenu(Vikas1,values=["PDF","TEXT"],command=document,width=50)
+doc.set("document type")
+doc.grid(padx=23,rowspan=1,row=0,column=3)
+
+pdf_name=ctk.CTkEntry(Vikas1,font=('calibre',12,'normal'))
+pdf_name.grid(row=1,column=3)
+    
 
 vol_label=ctk.CTkLabel(Vikas1,text="volume",text_color="white")
 vol_label.grid(row=3,column=2)
