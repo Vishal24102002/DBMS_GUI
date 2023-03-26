@@ -452,7 +452,7 @@ name_label.grid(padx=5,pady=5,row=3,column=0)
 theme_button=ctk.CTkButton(start_frame,text="theme",hover_color=("salmon","navy"),cursor="hand2",command=th,width=20)
 theme_button.grid(row=0,column=2,sticky="e")
 
-search_button=ctk.CTkButton(start_frame,text="search",cursor="hand2",hover_color=("seagreen","emerald"),command=lambda:connect(clicked.get()),height=30,width=190)
+search_button=ctk.CTkButton(start_frame,text="search",cursor="hand2",hover_color=("seagreen","seagreen"),command=lambda:connect(clicked.get()),height=30,width=190)
 search_button.grid(row=6,column=1)
 
 search_button.bind("<Return>",con)
