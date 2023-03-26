@@ -75,15 +75,7 @@ def update():
     chose=ctk.StringVar()
     chose.set("choose one")
     
-    username_label=ctk.CTkLabel(update,text="User-Name",fg_color="blue",text_color="red",font=('calibre',15,'normal'),width=100,height=25)
-    password_label=ctk.CTkLabel(update,text="User-Password",fg_color="blue",text_color="red",font=('calibre',15,'normal'),width=100,height=25)
-    username_entry=ctk.CTkEntry(update,fg_color="black",text_color="white",font=('calibre',15,'normal'),width=100,height=25)
-    password_entry=ctk.CTkEntry(update,fg_color="black",text_color="white",font=('calibre',15,'normal'),show="*",width=100,height=25)
-    
-    username_label.grid(row=0,column=0)
-    password_label.grid(row=1,column=0)
-    username_entry.grid(row=0,column=1)
-    password_entry.grid(row=1,column=1)
+    from_label=ctk.CTkLabel(update,text="from column",fg_color="blue",text_color="red",font=('calibre',15,'normal'),width=480,height=25)
     choice=ctk.CTkOptionMenu(update,values=["name","Id","experience"],variable=chose,dropdown_hover_color=("orange","yellow"),button_color="spring green") 
     choice.place(x=0,y=70)
     print("value of choice",choice.get())
@@ -315,21 +307,28 @@ def connect(GET):
                         elif((len(ID)!=0) and (len(NAME)!=0)):
                             mycursor.execute("select * from " + m + " where StudentID=" + '''"''' + ID + '''"'''+"&& firstname="+'''"''' + NAME + '''"''')
                         faculities_details=mycursor.fetchall()
-                        speak("data found")
                         print("total rows in details",mycursor.rowcount)
-                        for row in faculities_details:
-                            data1.set(row[0])
-                            data2.set(row[1])
-                            data3.set(row[2])
-                            data4.set(row[3])
-                            data5.set(row[4])
-                            data6.set(row[5])
-                            data7.set(row[6])
-                            data8.set(row[7])
-                            data9.set(row[8])
-                            data10.set(row[9])
-                            data11.set(row[10])
-                            data12.set(row[11])
+                        if mycursor.rowcount==0:
+                            speak("detail not found")
+                            for widgets in Frame.winfo_children(detail_frame):
+                                widgets.destroy()
+                            error_label=ctk.CTkLabel(detail_frame,text="record not found",fg_color=("black","black"),text_color=("red","white"),font=('calibre',18,'normal'))
+                            error_label.place(x=110,y=90)
+                        else:
+                            speak("detail found")
+                            for row in faculities_details:
+                                data1.set(row[0])
+                                data2.set(row[1])
+                                data3.set(row[2])
+                                data4.set(row[3])
+                                data5.set(row[4])
+                                data6.set(row[5])
+                                data7.set(row[6])
+                                data8.set(row[7])
+                                data9.set(row[8])
+                                data10.set(row[9])
+                                data11.set(row[10])
+                                data12.set(row[11])
                     
                             
                     elif(m=="aravality"):
@@ -354,21 +353,28 @@ def connect(GET):
                         elif((len(ID)!=0) and (len(NAME)!=0)):
                             mycursor.execute("select * from " + m + " where ID=" + '''"''' + ID + '''"'''+"&& name="+'''"''' + NAME + '''"''')
                         faculities_details=mycursor.fetchall()
-                        speak("data found")
                         print("total rows in details",mycursor.rowcount)
-                        for row in faculities_details:
-                            data1.set(row[0])
-                            data2.set(row[1])
-                            data3.set(row[2])
-                            data4.set(row[3])
-                            data5.set(row[4])
-                            data6.set(row[5])
-                            data7.set(row[6])
+                        if mycursor.rowcount==0:
+                            speak("data not found")
+                            for widgets in Frame.winfo_children(detail_frame):
+                                widgets.destroy()
+                            error_label=ctk.CTkLabel(detail_frame,text="record not found",fg_color=("black","black"),text_color=("red","white"),font=('calibre',18,'normal'))
+                            error_label.place(x=110,y=90)
+                        else:
+                            speak("detail found")
+                            for row in faculities_details:
+                                data1.set(row[0])
+                                data2.set(row[1])
+                                data3.set(row[2])
+                                data4.set(row[3])
+                                data5.set(row[4])
+                                data6.set(row[5])
+                                data7.set(row[6])
             except:
                 speak("an  , error ,  occured")
                 for widgets in Frame.winfo_children(detail_frame):
                     widgets.destroy()
-                error_label=ctk.CTkLabel(detail_frame,text="record not found",fg_color=("black","black"),text_color=("red","white"),font=('calibre',18,'normal'))
+                error_label=ctk.CTkLabel(detail_frame,text="ERROR OCCURED",fg_color=("black","black"),text_color=("red","white"),font=('calibre',18,'normal'))
                 error_label.place(x=110,y=90)
     
 def Close():
