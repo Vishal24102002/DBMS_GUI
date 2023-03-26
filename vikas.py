@@ -15,8 +15,8 @@ except:
 
 Vikas=ctk.CTk()
 Vikas.geometry("300x250")
-Vikas.maxsize(500,250)
-Vikas.minsize(500,250)
+Vikas.maxsize(510,250)
+Vikas.minsize(510,250)
 Vikas.title("Speech converter")
 Vikas.configure(bg="green")
 
@@ -24,14 +24,17 @@ def document(values):
     global text1
     print(values)
     print(pdf_name.get())
+    FILE=pdf_name.get()
+    file="C:\\Users\\Admin\\Desktop\\"+FILE
+    print(file)
     if values=="PDF":
-        reader = PdfReader(pdf_name.get())
+        reader = PdfReader(file)
         print(len(reader.pages))
         page = reader.pages[0]
         text1 = page.extract_text()
         print(text1)
     elif values=="TEXT":
-        File_object = open(pdf_name.get(),"r")
+        File_object = open(file,"r")
         text1=File_object.readlines()
         print(text1)
     else:
@@ -88,11 +91,13 @@ def prin():
     global n,s,v,text1
     print("n=",n)
     txt=text_area.get("1.0",'end-1c')
-    if(len(txt)!=0):
+    if(len(txt)!=0 and len(text1)==0):
         print(txt)
         speak(txt,n,s,v)
     elif(len(txt)==0 and len(text1)!=0):
         speak(text1,n,s,v)
+    elif(len(txt)!=0 and len(text1)!=0):
+        speak(txt,n,s,v)
     else:
         pass
         
@@ -142,3 +147,4 @@ Speak=ctk.CTkButton(Vikas1,text="CONVERT",hover_color="spring green",command=lam
 Speak.grid(row=4,column=2,columnspan=2)
 
 Vikas.mainloop()
+  
