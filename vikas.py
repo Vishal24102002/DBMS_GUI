@@ -1,6 +1,6 @@
 import pip
 try:
-  pip.main(["install"],["customtkinter"])
+  pip.main(["install"],["tk"])
   pip.main(["install"],["pyttsx3"])
   pip.main(["install"],["time"])
   import pyttsx3 as pt
@@ -14,21 +14,46 @@ except:
 
 Vikas=ctk.CTk()
 Vikas.geometry("300x250")
-Vikas.maxsize(400,250)
-Vikas.minsize(400,250)
+Vikas.maxsize(500,250)
+Vikas.minsize(500,250)
 Vikas.title("Speech converter")
 Vikas.configure(bg="green")
 
-def speak(text,m):
+def speak(text,m,sp,v):
     try:
         engine=pt.init()
-        engine.say(text)
-        Voices=engine.getProperty('voices') 
-        print(Voices) 
+        Voices=engine.getProperty('voices')
+        volu=engine.getProperty('volume')
+        print(Voices)
+        print(volu)
         engine.setProperty('voice',Voices[m].id) 
+        engine.setProperty('rate',sp)
+        engine.setProperty('volume',v)
+        spend=engine.getProperty('rate')
+        print("speed=",spend)
+        engine.say(text)
         engine.runAndWait()
     except:
         print("error occured")
+
+def volume(value):
+    print(value)
+    global v
+    v=value
+        
+def speed(event):
+    global s
+    if voice_speed.get()=="VERY-FAST":
+        s=350
+    elif voice_speed.get()=="VERY-SLOW":
+        s=50
+    elif voice_speed.get()=="SLOW":
+        s=150
+    elif voice_speed.get()=="FAST":
+        s=250
+    else:
+        s=200
+
 def voice(event):
     global n
     if (voice_type.get()=="Voice 1"):
@@ -42,23 +67,25 @@ def voice(event):
     elif (voice_type.get()=="Voice 5"):
         n=4
 def prin():
-    global n
+    global n,s,v
     print("n=",n)
     txt=text_area.get("1.0",'end-1c')
     print(txt)
-    speak(txt,n)
+    speak(txt,n,s,v)
 
 Vikas1=ctk.CTkFrame(Vikas,fg_color="black",height=250,width=200)
 Vikas1.pack(fill="both",expand=True)
 Vikas2=ctk.CTkFrame(Vikas1,height=55,width=75)
 
 n=ctk.IntVar()
+s=ctk.IntVar()
+v=ctk.IntVar()
 
 empty_label=ctk.CTkLabel(Vikas1,text="",fg_color="black")
 empty_label.grid(row=0,column=0)
 
 voice_type=ctk.StringVar()
-voice_type.set("choose from below")
+voice_type.set("choose voice")
 voice_choice=ctk.CTkOptionMenu( Vikas1,values=[
 "Voice 1",
 "Voice 2",
@@ -71,14 +98,21 @@ voice_choice.grid(row=1,column=2)
 
 
 voice_speed=ctk.StringVar()
-voice_speed.set("Choose From Below")
+voice_speed.set("Choose speed")
 voice_cho=ctk.CTkOptionMenu( Vikas1,values=[
+"VERY-FAST",
 "FAST",
 "NORMAL",
-"SLOW"
-],variable=voice_speed,width=50,dropdown_hover_color=("orange","yellow"))
+"SLOW",
+"VERY-SLOW"
+],variable=voice_speed,width=50,dropdown_hover_color=("orange","yellow"),command=speed)
 
 voice_cho.grid(row=2,column=2)
+
+vol_label=ctk.CTkLabel(Vikas1,text="volume",text_color="white")
+vol_label.grid(row=3,column=2)
+vol= ctk.CTkSlider(Vikas1, from_=0, to=1,number_of_steps=10,progress_color="yellow",width=150,command=volume)
+vol.grid(row=3,column=3)
 
 text_area = ctk.CTkTextbox(Vikas1,width=200,height=200,font=("Times New Roman", 15))
 text_area.grid(padx=10,row=1,column=0,rowspan=4)
