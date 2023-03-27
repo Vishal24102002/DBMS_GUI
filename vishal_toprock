@@ -52,7 +52,8 @@ def chossen():
     from_label.place(x=0,y=35)
     name_label.place(x=35,y=105)
     from_name.place(x=235,y=105)
-    
+def change_label():
+    pass
     
 def update():
     start_frame.forget()
@@ -75,9 +76,11 @@ def update():
     chose=ctk.StringVar()
     chose.set("choose one")
     
-    from_label=ctk.CTkLabel(update,text="from column",fg_color="blue",text_color="red",font=('calibre',15,'normal'),width=480,height=25)
-    choice=ctk.CTkOptionMenu(update,values=["name","Id","experience"],variable=chose,dropdown_hover_color=("orange","yellow"),button_color="spring green") 
+    from_label=ctk.CTkLabel(update,text="updated column",fg_color="blue",text_color="red",font=('calibre',15,'normal'),width=480,height=25)
+    empty_lab1=ctk.CTkLabel(update,fg_color="red")
+    choice=ctk.CTkOptionMenu(update,values=["name","Id","experience"],variable=chose,dropdown_hover_color=("orange","yellow"),button_color="spring green",command=change_label) 
     choice.place(x=0,y=70)
+    empty_lab1.place(x=25,y=100)
     print("value of choice",choice.get())
     login_button=ctk.CTkButton(update,text="LOGIN",hover_text_color="yellow",hover_color="lime",cursor="hand2",width=230,height=30)
     login_button.place(x=0,y=370)
