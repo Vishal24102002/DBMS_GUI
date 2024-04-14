@@ -1,8 +1,9 @@
 # semester-4(projects)
 College 4th semester project it also contains two main projects                                                            
+<h3>Uses</h3>
 <ol>
-i.e. <li>the data management for college</li>                                                                                       
-     <li>the document-types (pdf,doc,word) to speech conversion for easy reading </li>
+     <li>the data management for college</li>
+     <li>Provides the user friendlt interface for college staff to maintain the data and acess information in more efficient and easy way</li>
 </ol>
 <p>
 All these project are self designed and created by my own and are created in python language                                   
