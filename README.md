@@ -10,8 +10,10 @@ in order to run these projects you just need to have python installed on your sy
      <li>Provides the user friendlt interface for college staff to maintain the data and acess information in more efficient and easy way</li>
 </ol>
 
-<footer><b>
-Thanks for visting my git hub account                                                                                        
-Hope you like it
-</b>
+<footer>
+     Thanks for visting my git hub account                                                                                        
+     <br>
+     <b>
+          Hope you like it 
+     </b>
 </footer>
