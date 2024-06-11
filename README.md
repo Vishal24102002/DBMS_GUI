@@ -9,5 +9,9 @@ in order to run these projects you just need to have python installed on your sy
      <li>the data management for college</li>
      <li>Provides the user friendlt interface for college staff to maintain the data and acess information in more efficient and easy way</li>
 </ol>
+
+<footer><b>
 Thanks for visting my git hub account                                                                                        
-Hope you like it                                                                                                              
+Hope you like it
+</b>
+</footer>
