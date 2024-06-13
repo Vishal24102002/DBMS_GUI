@@ -16,7 +16,7 @@ in order to run these projects you just need to have python installed on your sy
      DBMS in real-world scenarios.    
 </p>
 
-<h2>Objectives</h2>
+<h2><b>Objectives</b></h2>
 <ol>
      <li><b>Design a Robust Database Schema:</b> Establish a well-structured and normalized database schema to ensure data integrity and minimize redundancy.</li>
      <li><b>User-Friendly GUI:</b> Create an intuitive and accessible graphical user interface for seamless interaction with the database.</li>
@@ -24,6 +24,14 @@ in order to run these projects you just need to have python installed on your sy
      <li><b>Performance Optimization:</b> Optimize queries and database performance to handle large datasets efficiently.</li>
      <li><b>Implement CRUD Operations:</b> Develop Create, Read, Update, and Delete (CRUD) functionalities to facilitate effective data management.</li>
 </ol>
+
+<h2><b>Scope</b></h2>
+<p>
+The scope of this project encompasses the end-to-end development of a DBMS application, including requirements analysis, database design, implementation, testing, and deployment. The project will cover various aspects of database management, such as schema creation, SQL query writing, GUI development, and security implementation.
+</p>
+<p>
+By incorporating a graphical user interface, the project aims to enhance user experience, making it easier for non-technical users to interact with the database. This will involve designing and implementing a GUI that is both functional and aesthetically pleasing, ensuring that users can perform database operations with minimal effort and maximum efficiency.
+</p>
 <footer>
      Thanks for visting my git hub account                                                                                        
      <br>
