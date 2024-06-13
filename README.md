@@ -1,4 +1,4 @@
-# Database Management System (project 4th semester)
+# Database Management System <p style="text-align: right;">(project 4th semester)</p>
 <p>
 All these project are self designed and created by my own and are created in python language                                   
 in order to run these projects you just need to have python installed on your system and rest will done by the code itself    
